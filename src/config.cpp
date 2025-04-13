@@ -36,18 +36,8 @@ static const char* defaultConfig =
 
 std::string CConfig::getDir()
 {
-	char pathBuf[255];
-	const char* configDir = getenv("XDG_CONFIG_HOME"); //Most users should have this set iirc
-	if (configDir != NULL)
-	{
-		sprintf(pathBuf, "%s/SLSsteam", configDir);
-	} else
-	{
-		const char* home = getenv("HOME");
-		sprintf(pathBuf, "%s/.config/SLSsteam", home);
-	}
-
-	return std::string(pathBuf);
+	static std::string configDir = std::string(getenv("HOME")) + "/SLSsteam/config";
+	return configDir;
 }
 
 std::string CConfig::getPath()
@@ -69,8 +59,7 @@ bool CConfig::init()
 				loadSettings();
 				return false;
 			}
-
-			Utils::log("Created config directory at %s\n");
+			Utils::log("Created config directory at %s\n", dir.c_str());
 		}
 
 		FILE* file = fopen(path.c_str(), "w");
