@@ -1,5 +1,3 @@
-`
-git clonehttps://github.com/Varringard/SLSsteam-	  
-cd SLSsteam-	  
+git clone https://github.com/Varringard/SLSsteam-
+cd SLSsteam-
 manage_slssteam.sh
-`
